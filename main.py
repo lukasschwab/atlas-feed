@@ -1,19 +1,12 @@
 from bottle import route, request, response, run, template, Bottle, static_file, HTTPError
 import requests
 from bs4 import BeautifulSoup as bs
+import jsonfeed as jf
 
 BASE_URL = "https://atlasofplaces.com/"
 ERROR_MESSAGES = {
     404: "This category could not be resolved in Atlas of Places."
 }
-
-def getCategoryMetadata(category):
-    return {
-        "version": "https://jsonfeed.org/version/1",
-        "title": "Atlas of Places" if len(category) == 0 else "Atlas of Places: %s" % category,
-        "home_page_url": BASE_URL + category,
-        "feed_url": "https://atlas-feed-dot-arxiv-feeds.appspot.com"
-    }
 
 # NOTE: typical structure:
 # <a href="/cinema/dr-strangelove/">
@@ -35,15 +28,15 @@ def toItem(link):
     url = link["href"]
     text = link.find("span").text.split("\n")
     image = link.find("img")
-    return {
-        "id": url,
-        "url": BASE_URL + url,
-        "title": text[1],
-        "author": {"name": text[0]},
-        "content_html": link.prettify().replace("data-src", "src"),
-        "image": image["data-src"],
-        "tags": text
-    }
+    return jf.Item(
+        id=url,
+        url=BASE_URL+url,
+        title=text[1],
+        author=jf.Author(name=text[0]),
+        content_html=link.prettify().replace("data-src", "src"),
+        image=image["data-src"],
+        tags=text
+    )
 
 # TODO: cache.
 def getRecentItems(category=""):
@@ -57,9 +50,14 @@ def getRecentItems(category=""):
         )
     links = soup.findAll("section", class_="overview")[0].findAll("a")
     recentLinks = links[:20]
-    res = getCategoryMetadata(category)
-    res["items"] = [toItem(l) for l in recentLinks]
-    return res
+    # Render the output feed.
+    res = jf.Feed(
+        title="Atlas of Places" if len(category) == 0 else "Atlas of Places: %s" % category,
+        home_page_url=BASE_URL+category,
+        feed_url="https://atlas-feed-dot-arxiv-feeds.appspot.com",
+        items=[toItem(l) for l in recentLinks]
+    )
+    return res.toJSON()
 
 app = Bottle()
 
@@ -74,13 +72,7 @@ def entry():
     return getRecentItems()
 
 # Serve Atlas of Places categories. Supported categories at this time:
-#   academia
-#   architecture
-#   cartography
-#   cinema
-#   essays
-#   painting
-#   photography
+#   academia, architecture, cartography, cinema, essays, painting, photography,
 #   research
 @app.route('/<category>')
 def subset(category):
