@@ -57,6 +57,7 @@ def getRecentItems(category=""):
         feed_url="https://atlas-feed-dot-arxiv-feeds.appspot.com",
         items=[toItem(l) for l in recentLinks]
     )
+    response.content_html = 'application/json'
     return res.toJSON()
 
 app = Bottle()
@@ -68,7 +69,6 @@ def favicon():
 # Serve index.
 @app.route('/')
 def entry():
-    response.content_type = 'application/json'
     return getRecentItems()
 
 # Serve Atlas of Places categories. Supported categories at this time:
@@ -76,5 +76,4 @@ def entry():
 #   research
 @app.route('/<category>')
 def subset(category):
-    response.content_html = 'application/json'
     return getRecentItems(category=category)
