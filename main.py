@@ -24,4 +24,4 @@ def page_to_items(page):
     links = soup.findAll("section", class_="overview")[0].findAll("a")
     return [toItem(l) for l in links[:MAX_ITEMS]]
 
-app = jfw.initialize(BASE_URL, page_to_items, MAX_ITEMS)
+app = jfw.initialize("Atlas of Places", BASE_URL, page_to_items, MAX_ITEMS)
