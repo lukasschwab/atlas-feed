@@ -2,7 +2,7 @@ import jsonfeed_wrapper as jfw
 import jsonfeed as jf
 from bs4 import BeautifulSoup as bs
 
-BASE_URL = "https://atlasofplaces.com/"
+BASE_URL = "https://atlasofplaces.com"
 MAX_ITEMS = 20
 
 def toItem(link):
