@@ -7,8 +7,8 @@
 ## Resources
 
 + `atlas-feed` is built with [`jsonfeed-wrapper`](https://github.com/lukasschwab/jsonfeed-wrapper) and [`jsonfeed`](https://github.com/lukasschwab/jsonfeed).
-+ [The feed is live here.](https://atlas-feed-dot-arxiv-feeds.appspot.com/)
-+ Supports feeds for categories, e.g. [Cinema](https://atlas-feed-dot-arxiv-feeds.appspot.com/cinema).
++ [The feed is live here.](https://us-central1-arxiv-feeds.cloudfunctions.net/atlas-feed)
++ Supports feeds for categories, e.g. [Cinema](https://us-central1-arxiv-feeds.cloudfunctions.net/atlas-feed/cinema).
 
 An example of the raw HTML structure being processed into an item:
 
