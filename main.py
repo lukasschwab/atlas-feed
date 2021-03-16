@@ -14,7 +14,7 @@ def toItem(link):
         id=url,
         url=BASE_URL+url,
         title=text[1],
-        author=jf.Author(name=text[0]),
+        authors=[jf.Author(name=text[0])],
         content_html=link.prettify().replace("data-src", "src"),
         image=image["data-src"],
         tags=text
