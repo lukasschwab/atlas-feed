@@ -4,6 +4,8 @@
 
 `atlas-feed` is a JSON Feed generator for ~[Atlas of Places](https://www.atlasofplaces.com)~ [Orthos Logos](https://orthoslogos.fr/); it naïvely processes their HTML, so I expect it to break eventually.
 
+**Note:** Since the Orthos Logos site rebuild, this generated feed is redundant with [orthoslogos.fr/feed](https://orthoslogos.fr/feed).
+
 ## Resources
 
 + `atlas-feed` is built with [`jsonfeed-wrapper`](https://github.com/lukasschwab/jsonfeed-wrapper) and [`jsonfeed`](https://github.com/lukasschwab/jsonfeed).
