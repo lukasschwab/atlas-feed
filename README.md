@@ -2,7 +2,7 @@
 
 # atlas-feed
 
-`atlas-feed` is a JSON Feed generator for [Atlas of Places](https://www.atlasofplaces.com); it naïvely processes their HTML, so I expect it to break eventually.
+`atlas-feed` is a JSON Feed generator for ~[Atlas of Places](https://www.atlasofplaces.com)~ [Orthos Logos](https://orthoslogos.fr/); it naïvely processes their HTML, so I expect it to break eventually.
 
 ## Resources
 

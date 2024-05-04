@@ -1,7 +1,7 @@
 # app.yaml contains deployment metadata for deploying this project with Google
 # App Engine.
 service: atlas-feed
-runtime: python37
+runtime: python310
 handlers:
   - url: .*
     script: auto
