@@ -2,7 +2,7 @@ import jsonfeed_wrapper as jfw
 import jsonfeed as jf
 from bs4 import BeautifulSoup as bs
 
-BASE_URL = "https://atlasofplaces.com"
+BASE_URL = "https://orthoslogos.fr"
 BASE_URL_FORMAT = BASE_URL + "/{category}"
 MAX_ITEMS = 20
 
